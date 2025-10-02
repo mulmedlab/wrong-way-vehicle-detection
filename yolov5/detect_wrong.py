@@ -216,14 +216,20 @@ def run(
                 cv2.putText(im0, text, (centroid[0] - 10, centroid[1] - 10),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0, 255), 2)
                 cv2.circle(im0, (centroid[0], centroid[1]), 3, (0, 0, 255), -1)
 
-        cv2.line(im0, (5,ROI_MIN), (5, ROI_MAX), (0,255,0), 3)
-        cv2.line(im0, (FRAME_WIDTH - 5,ROI_MIN), (FRAME_WIDTH - 5, ROI_MAX), (0,255,0), 3)
-        cv2.line(im0, (0,ROI_MIN), (FRAME_WIDTH, ROI_MIN), (0,255,0), 3)
-        cv2.line(im0, (0,ROI_MAX), (FRAME_WIDTH, ROI_MAX), (0,255,0), 3)
+        # Garis horizontal atas & bawah ROI
+        cv2.line(im0, (0, ROI_MIN), (FRAME_WIDTH, ROI_MIN), (0, 255, 0), 3)
+        cv2.line(im0, (0, ROI_MAX), (FRAME_WIDTH, ROI_MAX), (0, 255, 0), 3)
+
+        # Garis vertikal kiri (sejajar dengan plang biru One Way)
+        cv2.line(im0, (120, ROI_MIN), (120, ROI_MAX), (0, 255, 0), 3)
+
+        # Garis vertikal kanan (opsional, bisa dihapus kalau fokus ke kiri saja)
+        cv2.line(im0, (FRAME_WIDTH - 120, ROI_MIN), (FRAME_WIDTH - 120, ROI_MAX), (0, 255, 0), 3)
+
 
         #if view_img:
-        cv2.imshow(str(p), im0)
-        cv2.waitKey(1)  # 1 millisecond
+       # cv2.imshow(str(p), im0)
+        # cv2.waitKey(1)  # 1 millisecond
 
                 # Save results (image with detections)
         if save_img:
